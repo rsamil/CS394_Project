@@ -9,6 +9,7 @@ interface RAWGApiService {
     @GET("games")
     fun getGames(
         @Query("key") apiKey: String,
-        @Query("page") page: Int = 1
+        @Query("page") page: Int = 1,
+        @Query("page_size") pageSize: Int = 40
     ): Call<GameResponse>
 }
