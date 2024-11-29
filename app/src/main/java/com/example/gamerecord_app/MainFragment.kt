@@ -15,6 +15,7 @@ import com.example.rawgapi.model.GameResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.navigation.fragment.findNavController
 
 class MainFragment : Fragment() {
 
@@ -35,6 +36,11 @@ class MainFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         fetchPage(currentPage)
+
+        binding.latestGamesButton.setOnClickListener {
+
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToLatestGamesFragment())
+        }
 
         return binding.root
     }
