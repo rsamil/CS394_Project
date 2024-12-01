@@ -37,8 +37,9 @@
         android:id="@+id/latestGamesFragment"
         android:name="com.example.gamerecord_app.LatestGamesFragment"
         android:label="LatestGamesFragment"
-        tools:layout="@layout/fragment_latest_games" />
-    <action
-        android:id="@+id/action_latestGamesFragment_to_detailFragment"
-        app:destination="@id/detailFragment" />
+        tools:layout="@layout/fragment_latest_games" >
+        <action
+            android:id="@+id/action_latestGamesFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

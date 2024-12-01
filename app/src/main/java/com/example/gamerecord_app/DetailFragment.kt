@@ -1,5 +1,6 @@
 package com.example.gamerecord_app
 
+import android.content.Context
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
@@ -7,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.gamerecord_app.databinding.FragmentDetailBinding
@@ -24,10 +27,16 @@ class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private lateinit var apiService: RAWGApiService
 
+    private val viewModel: DetailViewModel by viewModels()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
         apiService = ApiClient.retrofit.create(RAWGApiService::class.java)
+
+        viewModel.gameId = args.gameId
 
         fetchGameDetails(args.gameId)
 
@@ -35,10 +44,29 @@ class DetailFragment : Fragment() {
             requireActivity().onBackPressed()
         }
 
+        val savedRating = loadUserRating(args.gameId)
+        if (savedRating >= 0f) {
+            viewModel.setUserRating(savedRating)
+        }
+
+        viewModel.userRating.observe(viewLifecycleOwner, Observer { rating ->
+            updateStarImages(rating)
+            binding.gameRating.text = "$rating / 5"
+            saveUserRating(args.gameId, rating)
+        })
+
+        viewModel.userRating.observe(viewLifecycleOwner, Observer { rating ->
+            updateStarImages(rating)
+            binding.gameRating.text = "$rating / 5"
+        })
+
+        setupStarClickListeners()
+
         return binding.root
     }
 
     private fun fetchGameDetails(gameId: Int) {
+        apiService = ApiClient.retrofit.create(RAWGApiService::class.java)
         apiService.getGameDetails(gameId, apiKey).enqueue(object : Callback<Game> {
             override fun onResponse(call: Call<Game>, response: Response<Game>) {
                 if (response.isSuccessful) {
@@ -71,13 +99,11 @@ class DetailFragment : Fragment() {
         val developerNames = game.developers?.joinToString(", ") { it.name } ?: "Unknown Developer"
         binding.gameProducer.text = "Producer: $developerNames"
 
-        val rating = game.rating ?: 0.0
-        val ratingsCount = game.ratings_count ?: 0
-        binding.gameRating.text = "$rating (${ratingsCount} ratings)"
 
         val platformNames = game.platforms?.map { it.platform.name }?.joinToString(", ") ?: "Unknown Platforms"
         binding.gamePlatforms.text = "Platforms: $platformNames"
 
+        val ratingsCount = game.ratings_count ?: 0
         binding.commentCount.text = ratingsCount.toString()
 
         val playtime = game.playtime ?: 0
@@ -85,5 +111,103 @@ class DetailFragment : Fragment() {
 
         binding.gameDescription.text = game.description_raw ?: "No description available."
         binding.gameDescription.movementMethod = ScrollingMovementMethod()
+
+        val currentRating = viewModel.userRating.value ?: 0f
+        binding.gameRating.text = "$currentRating / 5"
+    }
+
+    private fun setupStarClickListeners() {
+        binding.star1.setOnClickListener {
+            handleStarClick(1)
+        }
+        binding.star2.setOnClickListener {
+            handleStarClick(2)
+        }
+        binding.star3.setOnClickListener {
+            handleStarClick(3)
+        }
+        binding.star4.setOnClickListener {
+            handleStarClick(4)
+        }
+        binding.star5.setOnClickListener {
+            handleStarClick(5)
+        }
+    }
+
+    private fun handleStarClick(starNumber: Int) {
+        val currentRating = viewModel.userRating.value ?: 0f
+
+        if (currentRating == starNumber.toFloat()) {
+
+            viewModel.setUserRating(starNumber - 0.5f)
+
+        } else if (currentRating == starNumber - 0.5f) {
+
+            viewModel.setUserRating(0f)
+
+        } else {
+
+            viewModel.setUserRating(starNumber.toFloat())
+
+        }
+    }
+
+    private fun updateStarImages(rating: Float) {
+        val fullStar = R.drawable.ic_star_full
+        val halfStar = R.drawable.ic_star_half
+        val emptyStar = R.drawable.ic_star_empty
+
+        binding.star1.setImageResource(
+            when {
+                rating >= 1 -> fullStar
+                rating == 0.5f -> halfStar
+                else -> emptyStar
+            }
+        )
+
+        binding.star2.setImageResource(
+            when {
+                rating >= 2 -> fullStar
+                rating == 1.5f -> halfStar
+                else -> emptyStar
+            }
+        )
+
+        binding.star3.setImageResource(
+            when {
+                rating >= 3 -> fullStar
+                rating == 2.5f -> halfStar
+                else -> emptyStar
+            }
+        )
+
+        binding.star4.setImageResource(
+            when {
+                rating >= 4 -> fullStar
+                rating == 3.5f -> halfStar
+                else -> emptyStar
+            }
+        )
+
+        binding.star5.setImageResource(
+            when {
+                rating >= 5 -> fullStar
+                rating == 4.5f -> halfStar
+                else -> emptyStar
+            }
+        )
+    }
+
+    private fun saveUserRating(gameId: Int, rating: Float) {
+        val sharedPref = requireActivity().getSharedPreferences("user_ratings", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putFloat("game_$gameId", rating)
+            apply()
+        }
+    }
+
+    private fun loadUserRating(gameId: Int): Float {
+        val sharedPref = requireActivity().getSharedPreferences("user_ratings", Context.MODE_PRIVATE)
+        return sharedPref.getFloat("game_$gameId", -1f)
     }
 }
