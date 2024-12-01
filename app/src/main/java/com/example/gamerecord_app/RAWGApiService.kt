@@ -18,7 +18,8 @@ interface RAWGApiService {
     @GET("games")
     fun getLatestGames(
         @Query("key") apiKey: String,
-        @Query("ordering") ordering: String = "-released",
+        @Query("dates") dates: String?,
+        @Query("ordering") ordering: String?,
         @Query("page") page: Int = 1,
         @Query("page_size") pageSize: Int = 20
     ): Call<GameResponse>

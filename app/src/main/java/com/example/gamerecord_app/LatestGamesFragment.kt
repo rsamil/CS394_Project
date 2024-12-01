@@ -40,10 +40,12 @@ class LatestGamesFragment : Fragment() {
     }
 
     private fun fetchLatestGames() {
+        val dates = "2024-01-01,2024-12-31"
+        val ordering = "-ratings_count"
         val apiService = ApiClient.retrofit.create(RAWGApiService::class.java)
 
 
-        apiService.getLatestGames(apiKey, "released", 1, 40).enqueue(object : Callback<GameResponse> {
+        apiService.getLatestGames(apiKey, dates, ordering, 1,40).enqueue(object : Callback<GameResponse> {
             override fun onResponse(call: Call<GameResponse>, response: Response<GameResponse>) {
                 if (response.isSuccessful) {
                     val newGames = response.body()?.results ?: emptyList()
