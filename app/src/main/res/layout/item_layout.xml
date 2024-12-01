@@ -10,11 +10,12 @@
             android:id="@+id/gameImageView"
             android:layout_width="100dp"
             android:layout_height="150dp"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/border_white"
             app:srcCompat="@drawable/placeholder_image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -35,8 +35,10 @@ class MainFragment : Fragment() {
         adapter = ItemAdapter(gamesList)
         binding.recyclerView.adapter = adapter
 
-        fetchPage(currentPage)
-
+        if (gamesList.isEmpty()) {
+            fetchPage(currentPage)
+        }
+        
         binding.latestGamesButton.setOnClickListener {
 
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToLatestGamesFragment())

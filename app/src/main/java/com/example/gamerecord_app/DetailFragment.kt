@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -40,8 +41,12 @@ class DetailFragment : Fragment() {
 
         fetchGameDetails(args.gameId)
 
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
         binding.backButton.setOnClickListener {
-            requireActivity().onBackPressed()
+            callback.handleOnBackPressed()
         }
 
         val savedRating = loadUserRating(args.gameId)

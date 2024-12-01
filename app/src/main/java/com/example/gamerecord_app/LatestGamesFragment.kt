@@ -33,8 +33,10 @@ class LatestGamesFragment : Fragment() {
         adapter = LatestGamesAdapter(latestGamesList)
         binding.recyclerView.adapter = adapter
 
+        if (latestGamesList.isEmpty()) {
+            fetchLatestGames()
+        }
 
-        fetchLatestGames()
 
         return binding.root
     }
