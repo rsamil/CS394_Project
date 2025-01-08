@@ -1,7 +1,7 @@
 package com.example.rawgapi
 
+import com.example.gamerecord_app.config.ApiConfig
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -9,11 +9,17 @@ object ApiClient {
     private const val BASE_URL = "https://api.rawg.io/api/"
 
     private val client: OkHttpClient by lazy {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
         OkHttpClient.Builder()
-            .addInterceptor(logging)
+            .addInterceptor { chain ->
+                val originalRequest = chain.request()
+                val url = originalRequest.url.newBuilder()
+                    .addQueryParameter("key", ApiConfig.API_KEY)
+                    .build()
+                val request = originalRequest.newBuilder()
+                    .url(url)
+                    .build()
+                chain.proceed(request)
+            }
             .build()
     }
 
@@ -29,3 +35,4 @@ object ApiClient {
         retrofit.create(RAWGApiService::class.java)
     }
 }
+

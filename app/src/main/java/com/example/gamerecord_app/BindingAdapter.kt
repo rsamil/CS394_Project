@@ -13,7 +13,6 @@ fun bindGameList(recyclerView: RecyclerView, gameList: List<Game>?) {
     adapter?.submitList(gameList)
 }
 
-
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
     if (!url.isNullOrEmpty()) {
@@ -26,7 +25,6 @@ fun loadImage(view: ImageView, url: String?) {
         view.setImageResource(R.drawable.placeholder_image)
     }
 }
-
 
 @BindingAdapter("genreListText")
 fun bindGenreListText(textView: TextView, genres: List<Genre>?) {

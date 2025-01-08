@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.gamerecord_app.databinding.FragmentGameListBinding
 
 class GameListFragment : Fragment() {
     private lateinit var binding: FragmentGameListBinding
+    private val viewModel: GameListViewModel by viewModels()
     private lateinit var adapter: GameListAdapter
-    private lateinit var viewModel: GameListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,13 +21,10 @@ class GameListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentGameListBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(GameListViewModel::class.java)
-
         setupRecyclerView()
         observeViewModel()
 
         binding.latestGamesButton.setOnClickListener {
-
             findNavController().navigate(GameListFragmentDirections.actionGameListFragmentToLatestGamesFragment())
         }
         return binding.root

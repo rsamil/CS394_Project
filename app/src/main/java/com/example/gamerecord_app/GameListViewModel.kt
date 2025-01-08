@@ -12,41 +12,25 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class GameListViewModel : ViewModel() {
-    private val apiKey = "14db16342d0a4b6bbac323f2b50bb201"
-    private val pageSize = 40
-    private var currentPage = 1
-    private val maxPages = 5
-
     private val _gameList = MutableLiveData<List<Game>>()
-    val gameList: LiveData<List<Game>> = _gameList
-
-    private val allGames = mutableListOf<Game>()
+    val gameList: LiveData<List<Game>> get() = _gameList
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
+    private val apiService: RAWGApiService = ApiClient.apiService
 
     init {
         fetchGames()
     }
 
     fun fetchGames() {
-        if (currentPage > maxPages) return
-
         _isLoading.value = true
-        val apiService = ApiClient.retrofit.create(RAWGApiService::class.java)
-
-        apiService.getGames(apiKey, currentPage, pageSize).enqueue(object : Callback<GameResponse> {
+        apiService.getGames().enqueue(object : Callback<GameResponse> {
             override fun onResponse(call: Call<GameResponse>, response: Response<GameResponse>) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    val newGames = response.body()?.results ?: emptyList()
-                    allGames.addAll(newGames)
-                    _gameList.value = allGames
-
-                    currentPage++
-                    if (currentPage <= maxPages) {
-                        fetchGames()
-                    }
+                    _gameList.value = response.body()?.results ?: emptyList()
                 }
             }
 
@@ -55,4 +39,5 @@ class GameListViewModel : ViewModel() {
             }
         })
     }
+
 }
