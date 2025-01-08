@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="game"
+            type="com.example.rawgapi.model.Game" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
-
 
         <ImageView
             android:id="@+id/gameImageView"
@@ -20,12 +24,11 @@
             android:background="@drawable/border_white"
             app:srcCompat="@drawable/placeholder_image" />
 
-
         <TextView
             android:id="@+id/gameNameTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Game Name"
+            android:text="@{game.name}"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@android:color/white"
@@ -34,12 +37,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp" />
 
-
         <TextView
             android:id="@+id/genresTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Genres"
+            android:text="@{`Genres: ` + (game.genres != null ? game.genres[0].name : `Unknown Genres`)}"
             android:textSize="14sp"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@id/gameNameTextView"
@@ -47,12 +49,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="4dp" />
 
-
         <TextView
             android:id="@+id/platformsTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Platforms"
+            android:text="@{`Platforms: ` + (game.platforms != null ? game.platforms[0].platform.name : `Unknown Platforms`)}"
             android:textSize="14sp"
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@id/genresTextView"
@@ -64,3 +65,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+

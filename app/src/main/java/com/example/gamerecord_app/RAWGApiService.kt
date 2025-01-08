@@ -1,4 +1,4 @@
-// RAWGApiService.kt
+
 package com.example.rawgapi
 
 import com.example.rawgapi.model.Game

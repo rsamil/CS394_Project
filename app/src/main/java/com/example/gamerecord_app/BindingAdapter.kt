@@ -34,4 +34,15 @@ fun bindGenreListText(textView: TextView, genres: List<Genre>?) {
         textView.text = "Unknown Genres"
     }
 }
+@BindingAdapter("app:latestGamesList")
+fun bindLatestGamesList(recyclerView: RecyclerView, latestGamesList: List<Game>?) {
+    val adapter = recyclerView.adapter as? LatestGamesAdapter
+    adapter?.submitList(latestGamesList)
+}
+
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Game>?) {
+    val adapter = recyclerView.adapter as? LatestGamesAdapter
+    adapter?.submitList(data)
+}
 

@@ -10,33 +10,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gamerecord_app.databinding.FragmentLatestGamesBinding
 
 class LatestGamesFragment : Fragment() {
-
     private lateinit var binding: FragmentLatestGamesBinding
-    private lateinit var adapter: LatestGamesAdapter
     private val viewModel: LatestGamesViewModel by viewModels()
+    private lateinit var adapter: LatestGamesAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentLatestGamesBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
 
-        setupRecyclerView()
-        observeViewModel()
-
-        return binding.root
-    }
-
-    private fun setupRecyclerView() {
-        adapter = LatestGamesAdapter(emptyList())
+        adapter = LatestGamesAdapter()
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
-    }
 
-    private fun observeViewModel() {
-        viewModel.latestGamesList.observe(viewLifecycleOwner) { games ->
-            adapter.updateData(games)
+        viewModel.latestGames.observe(viewLifecycleOwner) { games ->
+            adapter.submitList(games)
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
+
+        return binding.root
     }
 }

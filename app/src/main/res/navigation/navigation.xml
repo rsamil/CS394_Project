@@ -5,7 +5,7 @@
     android:id="@+id/navigation"
     app:startDestination="@id/mainFragment">
 
-    <!-- MainFragment: Giriş ve yönlendirme ekranı -->
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.gamerecord_app.MainFragment"
@@ -16,7 +16,7 @@
             app:destination="@id/gameListFragment" />
     </fragment>
 
-    <!-- GameListFragment: Oyun listesini görüntüler -->
+
     <fragment
         android:id="@+id/gameListFragment"
         android:name="com.example.gamerecord_app.GameListFragment"
@@ -30,7 +30,7 @@
             app:destination="@id/latestGamesFragment" />
     </fragment>
 
-    <!-- DetailFragment: Oyun detayları -->
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.gamerecord_app.DetailFragment"
@@ -44,7 +44,7 @@
             app:argType="integer" />
     </fragment>
 
-    <!-- LatestGamesFragment: En son çıkan oyunlar listesi -->
+
     <fragment
         android:id="@+id/latestGamesFragment"
         android:name="com.example.gamerecord_app.LatestGamesFragment"

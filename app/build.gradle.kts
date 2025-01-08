@@ -63,7 +63,7 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("androidx.databinding:databinding-runtime:8.7.2")
-    kapt("com.github.bumptech.glide:compiler:4.12.0") // annotationProcessor yerine kapt kullanın
+    kapt("com.github.bumptech.glide:compiler:4.12.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

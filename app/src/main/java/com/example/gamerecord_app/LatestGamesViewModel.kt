@@ -12,8 +12,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LatestGamesViewModel : ViewModel() {
-    private val _latestGamesList = MutableLiveData<List<Game>>()
-    val latestGamesList: LiveData<List<Game>> get() = _latestGamesList
+    private val _latestGames = MutableLiveData<List<Game>>()
+    val latestGames: LiveData<List<Game>> get() = _latestGames
+
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
@@ -30,18 +31,16 @@ class LatestGamesViewModel : ViewModel() {
         ApiClient.apiService.getLatestGames(dates, ordering, 1, 40)
             .enqueue(object : Callback<GameResponse> {
                 override fun onResponse(call: Call<GameResponse>, response: Response<GameResponse>) {
-                    _isLoading.value = false
                     if (response.isSuccessful) {
-                        _latestGamesList.value = response.body()?.results ?: emptyList()
-                    } else {
-                        Log.e("RAWG_API_LATEST", "API Error: ${response.errorBody()?.string()}")
+                        _latestGames.value = response.body()?.results ?: emptyList()
                     }
+                    _isLoading.value = false
                 }
 
                 override fun onFailure(call: Call<GameResponse>, t: Throwable) {
                     _isLoading.value = false
-                    Log.e("RAWG_API_LATEST", "Network Error: ${t.message}")
                 }
             })
+
     }
 }
