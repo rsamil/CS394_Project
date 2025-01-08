@@ -48,10 +48,10 @@
     <fragment
         android:id="@+id/latestGamesFragment"
         android:name="com.example.gamerecord_app.LatestGamesFragment"
-        android:label="LatestGamesFragment"
-        tools:layout="@layout/fragment_latest_games">
+        android:label="fragment_latest_games">
         <action
-            android:id="@+id/action_latestGamesFragment_to_detailFragment"
+            android:id="@+id/actionLatestGamesFragmentToDetailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+
 </navigation>

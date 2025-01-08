@@ -1,6 +1,5 @@
 package com.example.gamerecord_app
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.rawgapi.model.Game
 
-class LatestGamesAdapter(private val games: List<Game>) :
+class LatestGamesAdapter(private var games: List<Game>) :
     RecyclerView.Adapter<LatestGamesAdapter.LatestGameViewHolder>() {
 
     class LatestGameViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
@@ -21,23 +20,14 @@ class LatestGamesAdapter(private val games: List<Game>) :
         val platformsTextView: TextView = view.findViewById(R.id.platformsTextView)
 
         fun bind(game: Game) {
-
             Glide.with(view.context)
                 .load(game.background_image)
                 .placeholder(R.drawable.placeholder_image)
                 .into(gameImageView)
 
-
             gameNameTextView.text = game.name
-
-
-            val genreNames = game.genres?.joinToString(", ") { it.name } ?: "Unknown Genres"
-            genresTextView.text = "Genres: $genreNames"
-
-
-            val platformNames = game.platforms?.map { it.platform.name }?.joinToString(", ") ?: "Unknown Platforms"
-            platformsTextView.text = "Platforms: $platformNames"
-
+            genresTextView.text = "Genres: ${game.genres?.joinToString(", ") { it.name } ?: "Unknown"}"
+            platformsTextView.text = "Platforms: ${game.platforms?.joinToString(", ") { it.platform.name } ?: "Unknown"}"
 
             view.setOnClickListener {
                 val action = LatestGamesFragmentDirections.actionLatestGamesFragmentToDetailFragment(
@@ -58,5 +48,10 @@ class LatestGamesAdapter(private val games: List<Game>) :
 
     override fun onBindViewHolder(holder: LatestGameViewHolder, position: Int) {
         holder.bind(games[position])
+    }
+
+    fun updateData(newGames: List<Game>) {
+        games = newGames
+        notifyDataSetChanged()
     }
 }
