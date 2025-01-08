@@ -75,29 +75,34 @@ class DetailFragment : Fragment() {
 
     private fun handleStarClick(starNumber: Int) {
         val currentRating = viewModel.userRating.value ?: 0f
+
         viewModel.setUserRating(
             when {
-                currentRating == starNumber.toFloat() -> starNumber - 0.5f
+                currentRating == starNumber.toFloat() -> starNumber - 0.5f //
                 currentRating == starNumber - 0.5f -> 0f
                 else -> starNumber.toFloat()
             }
         )
     }
 
+
     private fun updateStarImages(rating: Float) {
         val fullStar = R.drawable.ic_star_full
         val halfStar = R.drawable.ic_star_half
         val emptyStar = R.drawable.ic_star_empty
 
-        listOf(binding.star1, binding.star2, binding.star3, binding.star4, binding.star5).forEachIndexed { index, star ->
-            star.setImageResource(
-                when {
-                    rating > index + 1 -> fullStar
-                    rating == index + 0.5f -> halfStar
-                    else -> emptyStar
-                }
-            )
-        }
+        listOf(binding.star1, binding.star2, binding.star3, binding.star4, binding.star5)
+            .forEachIndexed { index, star ->
+                star.setImageResource(
+                    when {
+                        rating >= index + 1 -> fullStar
+                        rating > index -> halfStar
+                        else -> emptyStar
+                    }
+                )
+            }
     }
+
+
 
 }
