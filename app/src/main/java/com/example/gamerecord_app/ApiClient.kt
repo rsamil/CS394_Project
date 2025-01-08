@@ -25,4 +25,7 @@ object ApiClient {
             .build()
     }
 
+    val apiService: RAWGApiService by lazy {
+        retrofit.create(RAWGApiService::class.java)
+    }
 }

@@ -2,6 +2,13 @@
 <layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="game"
+            type="com.example.rawgapi.model.Game" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -11,11 +18,11 @@
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_margin="4dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/border_white"
-            app:srcCompat="@drawable/placeholder_image" />
+            android:scaleType="centerCrop"
+            app:imageUrl="@{game.background_image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
