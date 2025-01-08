@@ -6,12 +6,14 @@
 ## Usage Scenarios
 * Main Page: This is the page where the application starts. At the top of the page, there is **a latest game** button. In this page, user can see all the existing games by scrolling the page down. Games are listed as four by four with a little outer frame for aesthetic purposes.
 
-	![Main Screen.png](https://i.ibb.co/yVrbvBY/gr11.png)
+![Main Screen.png](https://i.ibb.co/yVrbvBY/gr11.png)
 
 *  Game Detail Page: This is the page where user can interact with the game with ranking it from 1 to 5 stars. Also a detailed description is provided for the user with other details. It shows the name of the game with it's cover photo, publish date and publisher company, available platforms and how long to beat information.
+  
 ![DetailPage.jpeg](https://i.ibb.co/3NyLHDp/gr22.png)
 
 * Latest Game Page: This is the page where users can see highest commented games listed from high to low. Again provided informations are cover photo, name, genre and platforms of the game. User can scroll to see all the available games.
+  
 ![LatestGamePage.jpeg](https://i.ibb.co/5kFxnTF/gr33.png)
 
 
