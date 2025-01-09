@@ -60,7 +60,6 @@ class DetailFragment : Fragment() {
         binding.gameReleaseDate.text = "(${game.released?.substring(0, 4) ?: "Unknown"})"
         binding.gameProducer.text = "Producer: ${game.developers?.joinToString(", ") { it.name } ?: "Unknown Developer"}"
         binding.gamePlatforms.text = "Platforms: ${game.platforms?.map { it.platform.name }?.joinToString(", ") ?: "Unknown Platforms"}"
-        binding.commentCount.text = game.ratings_count?.toString() ?: "0"
         binding.gameDuration.text = "${game.playtime ?: 0}h"
         binding.gameDescription.text = game.description_raw ?: "No description available."
         binding.gameDescription.movementMethod = ScrollingMovementMethod()

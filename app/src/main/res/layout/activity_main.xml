@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:background="@color/material_dynamic_neutral10"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:fontFamily="@font/montserrat"
         android:titleTextColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

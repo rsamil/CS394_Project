@@ -17,11 +17,17 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         setupActionBarWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            supportActionBar?.title = "Game Record"
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
