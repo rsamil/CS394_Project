@@ -8,61 +8,70 @@
             type="com.example.rawgapi.model.Game" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="24dp">
 
-        <ImageView
-            android:id="@+id/gameImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/border_white"
-            app:srcCompat="@drawable/placeholder_image" />
-
-        <TextView
-            android:id="@+id/gameNameTextView"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{game.name}"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toTopOf="@id/gameImageView"
-            app:layout_constraintStart_toEndOf="@id/gameImageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="8dp" />
+            android:background="@color/material_dynamic_neutral_variant10"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/genresTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{`Genres: ` + (game.genres != null ? game.genres[0].name : `Unknown Genres`)}"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/gameNameTextView"
-            app:layout_constraintStart_toStartOf="@id/gameNameTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="4dp" />
+            <ImageView
+                android:id="@+id/gameImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/border_white"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/placeholder_image" />
 
-        <TextView
-            android:id="@+id/platformsTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{`Platforms: ` + (game.platforms != null ? game.platforms[0].platform.name : `Unknown Platforms`)}"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/genresTextView"
-            app:layout_constraintStart_toStartOf="@id/gameNameTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/gameImageView" />
+            <TextView
+                android:id="@+id/gameNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{game.name}"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gameImageView"
+                app:layout_constraintTop_toTopOf="@id/gameImageView" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/genresTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{`Genres: ` + (game.genres != null ? game.genres[0].name : `Unknown Genres`)}"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/gameNameTextView"
+                app:layout_constraintTop_toBottomOf="@id/gameNameTextView" />
+
+            <TextView
+                android:id="@+id/platformsTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{`Platforms: ` + (game.platforms != null ? game.platforms[0].platform.name : `Unknown Platforms`)}"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/gameImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/gameNameTextView"
+                app:layout_constraintTop_toBottomOf="@id/genresTextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 </layout>
-
