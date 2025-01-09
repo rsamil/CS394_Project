@@ -5,7 +5,6 @@
     android:id="@+id/navigation"
     app:startDestination="@id/mainFragment">
 
-
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.gamerecord_app.MainFragment"
@@ -13,9 +12,12 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_gameListFragment"
-            app:destination="@id/gameListFragment" />
+            app:destination="@id/gameListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-
 
     <fragment
         android:id="@+id/gameListFragment"
@@ -24,12 +26,19 @@
         tools:layout="@layout/fragment_game_list">
         <action
             android:id="@+id/action_gameListFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_gameListFragment_to_latestGamesFragment"
-            app:destination="@id/latestGamesFragment" />
+            app:destination="@id/latestGamesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-
 
     <fragment
         android:id="@+id/detailFragment"
@@ -44,14 +53,17 @@
             app:argType="integer" />
     </fragment>
 
-
     <fragment
         android:id="@+id/latestGamesFragment"
         android:name="com.example.gamerecord_app.LatestGamesFragment"
         android:label="fragment_latest_games">
         <action
             android:id="@+id/actionLatestGamesFragmentToDetailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
 </navigation>
