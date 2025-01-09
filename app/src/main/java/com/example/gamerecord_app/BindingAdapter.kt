@@ -3,9 +3,11 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.rawgapi.model.Game
+import com.example.gamerecord_app.data.Game
 import android.widget.TextView
-import com.example.rawgapi.model.Genre
+import com.example.gamerecord_app.data.Genre
+import com.example.gamerecord_app.gamelist.GameListAdapter
+import com.example.gamerecord_app.latestgames.LatestGamesAdapter
 
 @BindingAdapter("app:gameList")
 fun bindGameList(recyclerView: RecyclerView, gameList: List<Game>?) {

@@ -1,4 +1,4 @@
-package com.example.gamerecord_app
+package com.example.gamerecord_app.gamelist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.gamerecord_app.databinding.ItemLayoutBinding
-import com.example.rawgapi.model.Game
+import com.example.gamerecord_app.data.Game
 
 class GameListAdapter : ListAdapter<Game, GameViewHolder>(DIFF_CALLBACK) {
     companion object {
@@ -38,7 +38,11 @@ class GameViewHolder(private val binding: ItemLayoutBinding) :
     fun bind(game: Game) {
         binding.game = game
         binding.root.setOnClickListener {
-            val action = GameListFragmentDirections.actionGameListFragmentToDetailFragment(game.name, game.id)
+            val action =
+                com.example.gamerecord_app.gamelist.GameListFragmentDirections.actionGameListFragmentToDetailFragment(
+                    game.name,
+                    game.id
+                )
             binding.root.findNavController().navigate(action)
         }
         binding.executePendingBindings()

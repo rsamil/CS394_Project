@@ -1,4 +1,4 @@
-package com.example.gamerecord_app
+package com.example.gamerecord_app.latestgames
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.example.gamerecord_app.latestgames.LatestGamesFragmentDirections
+import com.example.gamerecord_app.R
 import com.example.gamerecord_app.databinding.ItemLayoutLatestGameBinding
-import com.example.rawgapi.model.Game
+import com.example.gamerecord_app.data.Game
 
 class LatestGamesAdapter : ListAdapter<Game, LatestGamesViewHolder>(DIFF_CALLBACK) {
 
@@ -57,8 +59,10 @@ class LatestGamesViewHolder(private val binding: ItemLayoutLatestGameBinding) :
 
 
         binding.root.setOnClickListener {
-            val action = LatestGamesFragmentDirections
-                .actionLatestGamesFragmentToDetailFragment(game.name, game.id)
+            val action = LatestGamesFragmentDirections.actionLatestGamesFragmentToDetailFragment(
+                game.name,
+                game.id
+            )
             binding.root.findNavController().navigate(action)
         }
 

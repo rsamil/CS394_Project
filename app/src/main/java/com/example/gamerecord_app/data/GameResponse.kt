@@ -1,4 +1,4 @@
-package com.example.rawgapi.model
+package com.example.gamerecord_app.data
 
 data class GameResponse(
     val results: List<Game>,

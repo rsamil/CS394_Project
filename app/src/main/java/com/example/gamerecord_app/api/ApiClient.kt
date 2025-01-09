@@ -1,6 +1,5 @@
-package com.example.rawgapi
+package com.example.gamerecord_app.api
 
-import com.example.gamerecord_app.config.ApiConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

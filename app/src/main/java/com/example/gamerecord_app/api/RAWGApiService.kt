@@ -1,8 +1,8 @@
 
-package com.example.rawgapi
+package com.example.gamerecord_app.api
 
-import com.example.rawgapi.model.Game
-import com.example.rawgapi.model.GameResponse
+import com.example.gamerecord_app.data.Game
+import com.example.gamerecord_app.data.GameResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="game"
-            type="com.example.rawgapi.model.Game" />
+            type="com.example.gamerecord_app.data.Game" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

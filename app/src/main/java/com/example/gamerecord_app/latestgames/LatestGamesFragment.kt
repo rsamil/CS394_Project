@@ -1,4 +1,4 @@
-package com.example.gamerecord_app
+package com.example.gamerecord_app.latestgames
 
 import android.os.Bundle
 import android.view.LayoutInflater

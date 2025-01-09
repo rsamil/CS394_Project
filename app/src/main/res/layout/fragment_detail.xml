@@ -6,16 +6,15 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.gamerecord_app.DetailViewModel" />
+            type="com.example.gamerecord_app.gamedetail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detail_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
+        android:background="@color/light_black"
         android:padding="16dp">
-
 
         <ImageView
             android:id="@+id/gamePoster"

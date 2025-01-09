@@ -1,4 +1,4 @@
-package com.example.gamerecord_app
+package com.example.gamerecord_app.gamedetail
 
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.gamerecord_app.R
 import com.example.gamerecord_app.databinding.FragmentDetailBinding
-import com.example.rawgapi.model.Game
+import com.example.gamerecord_app.data.Game
 
 class DetailFragment : Fragment() {
 

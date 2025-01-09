@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/gameListFragment"
-        android:name="com.example.gamerecord_app.GameListFragment"
+        android:name="com.example.gamerecord_app.gamelist.GameListFragment"
         android:label="GameListFragment"
         tools:layout="@layout/fragment_game_list">
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.gamerecord_app.DetailFragment"
+        android:name="com.example.gamerecord_app.gamedetail.DetailFragment"
         android:label="DetailFragment"
         tools:layout="@layout/fragment_detail">
         <argument
@@ -55,7 +55,7 @@
 
     <fragment
         android:id="@+id/latestGamesFragment"
-        android:name="com.example.gamerecord_app.LatestGamesFragment"
+        android:name="com.example.gamerecord_app.latestgames.LatestGamesFragment"
         android:label="fragment_latest_games">
         <action
             android:id="@+id/actionLatestGamesFragmentToDetailFragment"

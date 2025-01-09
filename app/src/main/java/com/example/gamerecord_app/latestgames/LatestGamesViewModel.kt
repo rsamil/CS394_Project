@@ -1,12 +1,11 @@
-package com.example.gamerecord_app
+package com.example.gamerecord_app.latestgames
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.rawgapi.ApiClient
-import com.example.rawgapi.model.Game
-import com.example.rawgapi.model.GameResponse
+import com.example.gamerecord_app.api.ApiClient
+import com.example.gamerecord_app.data.Game
+import com.example.gamerecord_app.data.GameResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
